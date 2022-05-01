@@ -5,8 +5,6 @@ import Blockies from "react-blockies";
 
 const { Text } = Typography;
 
-// displays a timeline for scaffold-eth usage
-
 export default function TimelineDisplay(props) {
   return (
     <Timeline mode="right">

@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/accessible-emoji */
 
 import { utils, ethers } from "ethers";
 import { Button, Input, Form, Select, InputNumber, Table, Radio } from "antd";
@@ -6,20 +5,6 @@ import React, { useState, useEffect } from "react";
 import { useContractLoader, useOnBlock } from "../hooks";
 import { NETWORKS } from "../constants";
 import { Transactor } from "../helpers";
-
-/*
-This is a component for bridging between L1 & L2
-Currently it supports Testnet deposits for Arbitrum & Optimism
-
- __          _______ _____
- \ \        / /_   _|  __ \
-  \ \  /\  / /  | | | |__) |
-   \ \/  \/ /   | | |  ___/
-    \  /\  /   _| |_| |
-     \/  \/   |_____|_|
-
-
-*/
 
 export default function L2ArbitrumBridge({ address, userSigner }) {
   const [L1EthBalance, setL1EthBalance] = useState("...");
@@ -229,7 +214,6 @@ export default function L2ArbitrumBridge({ address, userSigner }) {
   );
 }
 
-// Arbitrum Inbox https://rinkeby.etherscan.io/address/0xa157dc79ca26d69c3b1282d03ec42bdee2790a8f#code
 const ArbitrumInboxABI = [
   {
     anonymous: false,
@@ -381,7 +365,6 @@ const ArbitrumInboxABI = [
   },
 ];
 
-// https://github.com/ethereum-optimism/optimism/blob/2bd49730fa8d2c10953873f0ccc792198a49d5c9/packages/contracts/contracts/optimistic-ethereum/iOVM/bridge/tokens/iOVM_L1StandardBridge.sol
 const OVM_L1StandardBridgeABI = [
   "function depositETH(uint32 _l2Gas,bytes calldata _data) external payable",
   "function depositETHTo(address _to,uint32 _l2Gas,bytes calldata _data) external payable",
@@ -389,7 +372,6 @@ const OVM_L1StandardBridgeABI = [
 ];
 
 const L1BridgeMetadata = {
-  // Arbitrium Contract's
   44010: {
     contracts: {
       Inbox: {
@@ -406,7 +388,6 @@ const L1BridgeMetadata = {
       },
     },
   },
-  // Optimism Contract's
   31337: {
     contracts: {
       OVM_L1StandardBridge: {

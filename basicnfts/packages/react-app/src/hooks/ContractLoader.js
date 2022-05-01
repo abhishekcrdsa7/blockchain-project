@@ -1,37 +1,6 @@
-/* eslint-disable import/no-dynamic-require */
-/* eslint-disable global-require */
 import { useEffect, useState } from "react";
 
 const { ethers } = require("ethers");
-
-/*
-  ~ What it does? ~
-
-  Loads your local contracts and gives options to read values from contracts
-  or write transactions into them
-
-  ~ How can I use? ~
-
-  const readContracts = useContractLoader(localProvider) // or
-  const writeContracts = useContractLoader(userProvider)
-
-  ~ Features ~
-
-  - localProvider enables reading values from contracts
-  - userProvider enables writing transactions into contracts
-  - Example of keeping track of "purpose" variable by loading contracts into readContracts
-    and using ContractReader.js hook:
-    const purpose = useContractReader(readContracts,"YourContract", "purpose")
-  - Example of using setPurpose function from our contract and writing transactions by Transactor.js helper:
-    tx( writeContracts.YourContract.setPurpose(newPurpose) )
-
-  config can include:
-  - chainId - to hardcode the chainId, irrespective of the providerOrSigner chainId
-  - hardhatNetworkName - to hardcode the hardhat network of interest
-  - customAddresses: { contractName: 0xCustomAddress } to hardcode the address for a given named contract
-  - hardhatContracts: object following the hardhat deploy export format (Json with chainIds as keys, which have hardhat network names as keys, which contain arrays of contracts for each)
-  - externalContracts: object with chainIds as keys, with an array of contracts for each
-*/
 
 export default function useContractLoader(providerOrSigner, config = {}) {
   const [contracts, setContracts] = useState();
@@ -42,7 +11,6 @@ export default function useContractLoader(providerOrSigner, config = {}) {
       if (providerOrSigner && typeof providerOrSigner !== "undefined") {
         console.log(`loading contracts`);
         try {
-          // we need to check to see if this providerOrSigner has a signer or not
           let signer;
           let provider;
           let accounts;

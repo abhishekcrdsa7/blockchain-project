@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/accessible-emoji */
 import { Button, Col, Divider, Input, Row, Tooltip } from "antd";
 import React, { useState } from "react";
 import Blockies from "react-blockies";
@@ -205,10 +202,6 @@ export default function FunctionForm({ contractFunction, functionInfo, provider,
                 if (gasPrice) {
                   overrides.gasPrice = gasPrice;
                 }
-                // Uncomment this if you want to skip the gas estimation for each transaction
-                // overrides.gasLimit = hexlify(1200000);
-
-                // console.log("Running with extras",extras)
                 const returned = await tx(contractFunction(...args, overrides));
                 result = tryToDisplay(returned);
               }

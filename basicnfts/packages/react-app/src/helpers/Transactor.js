@@ -4,16 +4,12 @@ import { BLOCKNATIVE_DAPPID } from "../constants";
 
 const { ethers } = require("ethers");
 
-// this should probably just be renamed to "notifier"
-// it is basically just a wrapper around BlockNative's wonderful Notify.js
-// https://docs.blocknative.com/notify
 const callbacks = {};
 
 const DEBUG = true;
 
 export default function Transactor(providerOrSigner, gasPrice, etherscan) {
   if (typeof providerOrSigner !== "undefined") {
-    // eslint-disable-next-line consistent-return
     return async (tx, callback) => {
       let signer;
       let network;
@@ -34,10 +30,9 @@ export default function Transactor(providerOrSigner, gasPrice, etherscan) {
       var notify = null;
       if(navigator.onLine){
         options = {
-          dappId: BLOCKNATIVE_DAPPID, // GET YOUR OWN KEY AT https://account.blocknative.com
+          dappId: BLOCKNATIVE_DAPPID,
           system: "ethereum",
           networkId: network.chainId,
-          // darkMode: Boolean, // (default: false)
           transactionHandler: txInformation => {
             if (DEBUG) console.log("HANDLE TX", txInformation);
             const possibleFunction = callbacks[txInformation.transaction.hash];

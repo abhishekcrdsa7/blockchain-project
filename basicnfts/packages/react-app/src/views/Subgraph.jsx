@@ -164,7 +164,6 @@ function Subgraph(props) {
           <Button
             onClick={() => {
               console.log("newPurpose", newPurpose);
-              /* look how you call setPurpose on your contract: */
               props.tx(props.writeContracts.YourContract.setPurpose(newPurpose));
             }}
           >

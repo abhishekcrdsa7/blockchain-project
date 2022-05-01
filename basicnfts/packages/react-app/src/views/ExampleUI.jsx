@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/accessible-emoji */
 
 import { SyncOutlined } from "@ant-design/icons";
 import { utils } from "ethers";
@@ -22,9 +21,7 @@ export default function ExampleUI({
 
   return (
     <div>
-      {/*
-        ⚙️ Here is an example UI that displays and sets the purpose in your smart contract:
-      */}
+      {}
       <div style={{ border: "1px solid #cccccc", padding: 16, width: 400, margin: "auto", marginTop: 64 }}>
         <h2>Example UI:</h2>
         <h4>purpose: {purpose}</h4>
@@ -38,8 +35,6 @@ export default function ExampleUI({
           <Button
             style={{ marginTop: 8 }}
             onClick={async () => {
-              /* look how you call setPurpose on your contract: */
-              /* notice how you pass a call back for tx updates too */
               const result = tx(writeContracts.YourContract.setPurpose(newPurpose), update => {
                 console.log("📡 Transaction Update:", update);
                 if (update && (update.status === "confirmed" || update.status === 1)) {
@@ -73,7 +68,6 @@ export default function ExampleUI({
           fontSize={16}
         />
         <Divider />
-        {/* use utils.formatEther to display a BigNumber: */}
         <h2>Your Balance: {yourLocalBalance ? utils.formatEther(yourLocalBalance) : "..."}</h2>
         <div>OR</div>
         <Balance address={address} provider={localProvider} price={price} />
@@ -81,7 +75,6 @@ export default function ExampleUI({
         <div>🐳 Example Whale Balance:</div>
         <Balance balance={utils.parseEther("1000")} provider={localProvider} price={price} />
         <Divider />
-        {/* use utils.formatEther to display a BigNumber: */}
         <h2>Your Balance: {yourLocalBalance ? utils.formatEther(yourLocalBalance) : "..."}</h2>
         <Divider />
         Your Contract Address:
@@ -94,7 +87,6 @@ export default function ExampleUI({
         <div style={{ margin: 8 }}>
           <Button
             onClick={() => {
-              /* look how you call setPurpose on your contract: */
               tx(writeContracts.YourContract.setPurpose("🍻 Cheers"));
             }}
           >
@@ -104,15 +96,11 @@ export default function ExampleUI({
         <div style={{ margin: 8 }}>
           <Button
             onClick={() => {
-              /*
-              you can also just craft a transaction and send it to the tx() transactor
-              here we are sending value straight to the contract's address:
-            */
+              
               tx({
                 to: writeContracts.YourContract.address,
                 value: utils.parseEther("0.001"),
               });
-              /* this should throw an error about "no fallback nor receive function" until you add it */
             }}
           >
             Send Value
@@ -121,13 +109,13 @@ export default function ExampleUI({
         <div style={{ margin: 8 }}>
           <Button
             onClick={() => {
-              /* look how we call setPurpose AND send some value along */
+            
               tx(
                 writeContracts.YourContract.setPurpose("💵 Paying for this one!", {
                   value: utils.parseEther("0.001"),
                 }),
               );
-              /* this will fail until you make the setPurpose function payable */
+              
             }}
           >
             Set Purpose With Value
@@ -136,7 +124,7 @@ export default function ExampleUI({
         <div style={{ margin: 8 }}>
           <Button
             onClick={() => {
-              /* you can also just craft a transaction and send it to the tx() transactor */
+              
               tx({
                 to: writeContracts.YourContract.address,
                 value: utils.parseEther("0.001"),
@@ -144,7 +132,7 @@ export default function ExampleUI({
                   "🤓 Whoa so 1337!",
                 ]),
               });
-              /* this should throw an error about "no fallback nor receive function" until you add it */
+              
             }}
           >
             Another Example
@@ -152,10 +140,6 @@ export default function ExampleUI({
         </div>
       </div>
 
-      {/*
-        📑 Maybe display a list of events?
-          (uncomment the event and emit line in YourContract.sol! )
-      */}
       <div style={{ width: 600, margin: "auto", marginTop: 32, paddingBottom: 32 }}>
         <h2>Events:</h2>
         <List

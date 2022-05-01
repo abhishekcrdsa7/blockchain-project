@@ -3,36 +3,12 @@ import React, { useEffect, useState } from "react";
 
 const { utils, constants } = require("ethers");
 
-/*
-  ~ What it does? ~
-
-  Displays input field with options to convert between STRING and BYTES32
-
-  ~ How can I use? ~
-
-  <BytesStringInput
-    autofocus
-    value={"scaffold-eth"}
-    placeholder="Enter value..."
-    onChange={value => {
-      setValue(value);
-    }}
-  />
-
-  ~ Features ~
-
-  - Provide value={value} to specify initial string
-  - Provide placeholder="Enter value..." value for the input
-  - Control input change by onChange={value => { setValue(value);}}
-
-*/
 
 export default function BytesStringInput(props) {
   const [mode, setMode] = useState("STRING");
   const [display, setDisplay] = useState();
   const [value, setValue] = useState(constants.HashZero);
 
-  // current value is the value in bytes32
   const currentValue = typeof props.value !== "undefined" ? props.value : value;
 
   const option = title => {
@@ -43,8 +19,6 @@ export default function BytesStringInput(props) {
           if (mode === "STRING") {
             setMode("BYTES32");
             if (!utils.isHexString(currentValue)) {
-              /* in case user enters invalid bytes32 number,
-                   it considers it as string and converts to bytes32 */
               const changedValue = utils.formatBytes32String(currentValue);
               setDisplay(changedValue);
             } else {
@@ -87,8 +61,6 @@ export default function BytesStringInput(props) {
       onChange={async e => {
         const newValue = e.target.value;
         if (mode === "STRING") {
-          // const ethValue = parseFloat(newValue) / props.price;
-          // setValue(ethValue);
           if (typeof props.onChange === "function") {
             props.onChange(utils.formatBytes32String(newValue));
           }

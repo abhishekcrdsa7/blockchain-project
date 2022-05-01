@@ -19,7 +19,7 @@ const noContractDisplay = (
       and{" "}
       <span
         className="highlight"
-        style={{ marginLeft: 4, /* backgroundColor: "#f1f1f1", */ padding: 4, borderRadius: 4, fontWeight: "bolder" }}
+        style={{ marginLeft: 4, padding: 4, borderRadius: 4, fontWeight: "bolder" }}
       >
         yarn run deploy
       </span>{" "}
@@ -32,7 +32,7 @@ const noContractDisplay = (
       Warning: You might need to run
       <span
         className="highlight"
-        style={{ marginLeft: 4, /* backgroundColor: "#f1f1f1", */ padding: 4, borderRadius: 4, fontWeight: "bolder" }}
+        style={{ marginLeft: 4, padding: 4, borderRadius: 4, fontWeight: "bolder" }}
       >
         yarn run deploy
       </span>{" "}
@@ -79,7 +79,6 @@ export default function Contract({
   const [refreshRequired, triggerRefresh] = useState(false);
   const contractDisplay = displayedContractFunctions.map(fn => {
     if (isQueryable(fn)) {
-      // If there are no inputs, just display return value
       return (
         <DisplayVariable
           key={fn.name}
@@ -90,7 +89,6 @@ export default function Contract({
         />
       );
     }
-    // If there are inputs, display a form to allow users to provide these
     return (
       <FunctionForm
         key={"FF" + fn.name}

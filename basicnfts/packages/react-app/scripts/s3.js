@@ -3,8 +3,7 @@ const fs = require("fs");
 
 const directoryName = "build";
 
-const BUCKETNAME = ""; // <<---- SET YOUR BUCKET NAME AND CREATE aws.json ** see below vvvvvvvvvv
-
+const BUCKETNAME = ""; 
 if (!BUCKETNAME) {
   console.log("☢️   Enter a bucket name in packages/react-app/scripts/s3.js ");
   process.exit(1);
@@ -24,16 +23,9 @@ console.log("credentials", credentials);
 
 credentials.bucket = BUCKETNAME;
 
-// optional options to be passed as parameter to the method
 const options = {
   useFoldersForFileTypes: false,
   useIAMRoleCredentials: false,
 };
 
-// optional cloudfront invalidation rule
-// const invalidation = {
-//  awsDistributionId: "<Your CloudFront Distribution Id>",
-//  awsInvalidationPath: "/*"
-// }
-
-s3FolderUpload(directoryName, credentials, options /* , invalidation */);
+s3FolderUpload(directoryName, credentials, options);
