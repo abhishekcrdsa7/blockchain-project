@@ -1,0 +1,9 @@
+{
+  "short_name": "verihat",
+  "start_url": ".",
+  "name": "verihat",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
